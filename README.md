@@ -1,5 +1,19 @@
 # Trailer Trash for Vim
 
-Remove and irradicate unwanted whitespace at the end of the line in Vim.
+Remove and irradiate unwanted whitespace at the end of the line in Vim.
 
-This is [not](http://blog.kamil.dworakowski.name/2009/09/unobtrusive-highlighting-of-trailing.html) an [original](http://vimcasts.org/episodes/tidying-whitespace/) [idea](http://vim.wikia.com/wiki/Highlight_unwanted_spaces), I just gathered tips and ideas from around the web and bundled them together in a way I liked.
+This plugin will highlight trailing whitespace at the end of the line. This is done in a polite way:
+
+ * You are not currently editing that line (prevents highlighting it as you type)
+ * Youy are not in insert mode
+
+ It also introduces a `:Trim` command that will strip all the trailing white space from a file (or range). This is done in a polite way:
+
+ * Places the cursor back where is started
+ * Resets the search highlight back to what it was
+
+As always, Trailer Trash is polite.
+
+----
+
+This is [not](http://blog.kamil.dworakowski.name/2009/09/unobtrusive-highlighting-of-trailing.html) [an](http://vim.wikia.com/wiki/Remove_unwanted_spaces) [original](http://vimcasts.org/episodes/tidying-whitespace/) [idea](http://vim.wikia.com/wiki/Highlight_unwanted_spaces), I just gathered tips and ideas from around the web and bundled them together in a way I liked.

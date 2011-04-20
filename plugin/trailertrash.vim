@@ -36,8 +36,8 @@ command! -bar -range=% Trim :call KillTrailerTrash()
 "nmap <silent> <Leader><space> :call KillTrailerTrash()<CR>
 
 " Syntax
-hi link UnwantedTrailerTrash Error
-au ColorScheme * hi link UnwantedTrailerTrash Error
+hi link UnwantedTrailerTrash ErrorMsg
+au ColorScheme * hi link UnwantedTrailerTrash ErrorMsg
 au BufEnter * match UnwantedTrailerTrash /\s\+$/
 au InsertEnter * match UnwantedTrailerTrash /\s\+\%#\@<!$/
 au InsertLeave * match UnwantedTrailerTrash /\s\+$/

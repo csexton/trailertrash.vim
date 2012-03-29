@@ -12,6 +12,8 @@ This plugin will highlight trailing whitespace at the end of the line. This is d
  * Places the cursor back where is started
  * Resets the search highlight back to what it was
 
+ To toggle highlight, call `:HideTrailer` or `:ShowTrailer`
+
 As always, Trailer Trash is polite.
 
 ----

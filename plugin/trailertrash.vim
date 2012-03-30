@@ -49,18 +49,20 @@ command! HideTrailer :call HideTrailer()
 
 function! ShowTrailer()
     let g:hide_trailer = 0
-    hi link UnwantedTrailerTrash ErrorMsg
-    au ColorScheme * hi link UnwantedTrailerTrash ErrorMsg
-    au BufEnter    * if(&modifiable) | match UnwantedTrailerTrash /\s\+$/ | endif
-    au InsertEnter * if(&modifiable) | match UnwantedTrailerTrash /\s\+\%#\@<!$/ | endif
-    au InsertLeave * if(&modifiable) | match UnwantedTrailerTrash /\s\+$/ | endif
 endfunction
 
 command! ShowTrailer :call ShowTrailer()
 
-au BufEnter * if g:hide_trailer == 1 | call ShowTrailer() | endif
+hi link UnwantedTrailerTrash ErrorMsg
+au ColorScheme * hi link UnwantedTrailerTrash ErrorMsg
+au BufEnter    * if g:hide_trailer == 0 | match UnwantedTrailerTrash /\s\+$/ | endif
+au InsertEnter * if g:hide_trailer == 0 | match UnwantedTrailerTrash /\s\+\%#\@<!$/ | endif
+au InsertLeave * if g:hide_trailer == 0 | match UnwantedTrailerTrash /\s\+$/ | endif
+
 " }}}1
 
 let &cpo = s:cpo_save
 
 " vim:set ft=vim ts=8 sw=4 sts=4:
+
+

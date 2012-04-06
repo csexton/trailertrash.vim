@@ -49,7 +49,7 @@ command! HideTrailer :call HideTrailer()
 
 function! ShowTrailer()
     let g:hide_trailer = 0
-    match UnwantedTrailerTrash
+    match UnwantedTrailerTrash /\s\+$/
 endfunction
 
 command! ShowTrailer :call ShowTrailer()

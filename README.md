@@ -5,12 +5,14 @@ Remove and irradiate unwanted whitespace at the end of the line in Vim.
 This plugin will highlight trailing whitespace at the end of the line. This is done in a polite way:
 
  * You are not currently editing that line (prevents highlighting it as you type)
- * Youy are not in insert mode
+ * You are not in insert mode
 
  It also introduces a `:Trim` command that will strip all the trailing white space from a file (or range). This is done in a polite way:
 
  * Places the cursor back where is started
  * Resets the search highlight back to what it was
+
+ To toggle highlight, call `:HideTrailer` or `:ShowTrailer`
 
 As always, Trailer Trash is polite.
 

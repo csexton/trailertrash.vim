@@ -19,6 +19,11 @@ let s:cpo_save = &cpo
 set cpo&vim
 
 " Code {{{1
+if &modifiable
+    let g:hide_trailer = 0
+else
+    let g:hide_trailer = 1
+endif
 
 function! KillTrailerTrash()
     " Preparation: save last search, and cursor position.
@@ -35,15 +40,30 @@ endfunction
 command! -bar -range=% Trim :call KillTrailerTrash()
 "nmap <silent> <Leader><space> :call KillTrailerTrash()<CR>
 
-" Syntax
+function! HideTrailer()
+    match none UnwantedTrailerTrash
+    let g:hide_trailer = 1
+endfunction
+
+command! HideTrailer :call HideTrailer()
+
+function! ShowTrailer()
+    let g:hide_trailer = 0
+    match UnwantedTrailerTrash /\s\+$/
+endfunction
+
+command! ShowTrailer :call ShowTrailer()
+
 hi link UnwantedTrailerTrash ErrorMsg
 au ColorScheme * hi link UnwantedTrailerTrash ErrorMsg
-au BufEnter    * if(&modifiable) | match UnwantedTrailerTrash /\s\+$/ | endif
-au InsertEnter * if(&modifiable) | match UnwantedTrailerTrash /\s\+\%#\@<!$/ | endif
-au InsertLeave * if(&modifiable) | match UnwantedTrailerTrash /\s\+$/ | endif
+au BufEnter    * if g:hide_trailer == 0 | match UnwantedTrailerTrash /\s\+$/ | endif
+au InsertEnter * if g:hide_trailer == 0 | match UnwantedTrailerTrash /\s\+\%#\@<!$/ | endif
+au InsertLeave * if g:hide_trailer == 0 | match UnwantedTrailerTrash /\s\+$/ | endif
 
 " }}}1
 
 let &cpo = s:cpo_save
 
 " vim:set ft=vim ts=8 sw=4 sts=4:
+
+

@@ -12,6 +12,8 @@ This plugin will highlight trailing whitespace at the end of the line. This is d
  * Places the cursor back where is started
  * Resets the search highlight back to what it was
 
+TrailerTrash defines a `:Trailer` command to stop showing unwanted whitespace, for those projects where you don't want to start fighting it.
+
 As always, Trailer Trash is polite.
 
 

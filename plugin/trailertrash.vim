@@ -33,7 +33,7 @@ function! KillTrailerTrash()
 endfunction
 
 command! -bar -range=% Trim :call KillTrailerTrash()
-"nmap <silent> <Leader><space> :call KillTrailerTrash()<CR>
+"nmap <silent> <Leader>sa :call KillTrailerTrash()<CR>
 
 " User can override blacklist. This match as regexp pattern.
 let s:blacklist = get(g:, 'trailertrash_blacklist', [
@@ -52,9 +52,28 @@ function! s:TrailerMatch(pattern)
     endif
 endfunction
 
+" Create autocommand group
+augroup TrailerTrash
+augroup END
+
 " Syntax
-hi link UnwantedTrailerTrash ErrorMsg
-au ColorScheme * hi link UnwantedTrailerTrash ErrorMsg
+function! ShowTrailerTrash()
+    if exists("g:show_trailertrash") && g:show_trailertrash == 1
+        hi UnwantedTrailerTrash guifg=NONE guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+        au! TrailerTrash ColorScheme *
+        let g:show_trailertrash = 0
+    else
+        hi link UnwantedTrailerTrash Error
+        au TrailerTrash ColorScheme * hi link UnwantedTrailerTrash Error
+        let g:show_trailertrash = 1
+    end
+endfunction
+command Trailer :call ShowTrailerTrash()
+call ShowTrailerTrash()
+"nmap <silent> <Leader>s :call ShowTrailerTrash()<CR>
+
+" Matches
+hi UnwantedTrailerTrash guifg=NONE guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
 au BufEnter    * call s:TrailerMatch('/\s\+$/')
 au InsertEnter * call s:TrailerMatch('/\s\+\%#\@<!$/')
 au InsertLeave * call s:TrailerMatch('/\s\+$/')

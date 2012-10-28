@@ -73,7 +73,6 @@ call ShowTrailerTrash()
 "nmap <silent> <Leader>s :call ShowTrailerTrash()<CR>
 
 " Matches
-hi UnwantedTrailerTrash guifg=NONE guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
 au BufEnter    * call s:TrailerMatch('/\s\+$/')
 au InsertEnter * call s:TrailerMatch('/\s\+\%#\@<!$/')
 au InsertLeave * call s:TrailerMatch('/\s\+$/')

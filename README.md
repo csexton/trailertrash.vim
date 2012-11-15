@@ -19,7 +19,7 @@ As always, Trailer Trash is polite.
 
 ### Ignoring Specific file types
 
-You can ignore specific file types by adding an exclude list to your `.vimrc` file. If you have any specific types that should always be ignored plese send a pull request or open an issue.
+You can ignore specific file types by adding an exclude list to your `.vimrc` file. If you have any specific types that should always be ignored please send a pull request or open an issue.
 
     let g:trailertrash_blacklist = ['__Calendar', '^http:']
 

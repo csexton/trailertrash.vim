@@ -5,7 +5,7 @@ Remove and irradiate unwanted whitespace at the end of the line in Vim.
 This plugin will highlight trailing whitespace at the end of the line. This is done in a polite way:
 
  * You are not currently editing that line (prevents highlighting it as you type)
- * Youy are not in insert mode
+ * You are not in insert mode
 
  It also introduces a `:Trim` command that will strip all the trailing white space from a file (or range). This is done in a polite way:
 
@@ -19,7 +19,7 @@ As always, Trailer Trash is polite.
 
 ### Ignoring Specific file types
 
-You can ignore specific file types by adding an exluude list to your `.vimrc` file. If you have any specific types that should always be ignoreed plese send a pull request or open an issue.
+You can ignore specific file types by adding an exclude list to your `.vimrc` file. If you have any specific types that should always be ignored plese send a pull request or open an issue.
 
     let g:trailertrash_blacklist = ['__Calendar', '^http:']
 

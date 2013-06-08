@@ -38,6 +38,7 @@ command! -bar -range=% Trim :call KillTrailerTrash()
 " User can override blacklist. This match as regexp pattern.
 let s:blacklist = get(g:, 'trailertrash_blacklist', [
 \ '__Calendar',
+\ '*unite*',
 \])
 
 function! s:TrailerMatch(pattern)

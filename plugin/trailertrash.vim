@@ -20,20 +20,19 @@ set cpo&vim
 
 " Code {{{1
 
-function! KillTrailerTrash()
+function! KillTrailerTrash() range
     " Preparation: save last search, and cursor position.
     let _s=@/
     let l = line(".")
     let c = col(".")
     " Do the business:
-    %s/\s\+$//e
+    exec a:firstline . ',' . a:lastline . 's/\s\+$//e'
     " Clean up: restore previous search history, and cursor position
     let @/=_s
     call cursor(l, c)
 endfunction
 
-command! -bar -range=% Trim :call KillTrailerTrash()
-"nmap <silent> <Leader>sa :call KillTrailerTrash()<CR>
+command! -bar -range=% Trim <line1>,<line2>:call KillTrailerTrash()
 
 " User can override blacklist. This match as regexp pattern.
 let s:blacklist = get(g:, 'trailertrash_blacklist', [
@@ -59,7 +58,7 @@ augroup END
 
 " Syntax
 function! ShowTrailerTrash()
-    if exists("g:show_trailertrash") && g:show_trailertrash == 1
+    if (exists("g:show_trailertrash") && g:show_trailertrash == 1) || (exists("l:show_trailertrash") && l:show_trailertrash == 1)
         hi UnwantedTrailerTrash guifg=NONE guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
         au! TrailerTrash ColorScheme *
         let g:show_trailertrash = 0

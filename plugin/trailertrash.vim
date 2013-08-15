@@ -48,6 +48,9 @@ function! s:TrailerMatch(pattern)
                 return
             endif
         endfor
+        if (exists("b:show_trailertrash") && b:show_trailertrash == 0)
+            return
+        endif
         exe "match" "UnwantedTrailerTrash" a:pattern
     endif
 endfunction
@@ -58,7 +61,7 @@ augroup END
 
 " Syntax
 function! ShowTrailerTrash()
-    if (exists("g:show_trailertrash") && g:show_trailertrash == 1) || (exists("l:show_trailertrash") && l:show_trailertrash == 1)
+    if (exists("g:show_trailertrash") && g:show_trailertrash == 1)
         hi UnwantedTrailerTrash guifg=NONE guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
         au! TrailerTrash ColorScheme *
         let g:show_trailertrash = 0

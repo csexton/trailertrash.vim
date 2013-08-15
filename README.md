@@ -1,6 +1,6 @@
 # Trailer Trash for Vim
 
-Remove and irradiate unwanted whitespace at the end of the line in Vim.
+Eradicate unwanted whitespace at the end of the line in Vim.
 
 This plugin will highlight trailing whitespace at the end of the line. This is done in a polite way:
 

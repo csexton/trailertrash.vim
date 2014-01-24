@@ -62,7 +62,6 @@ augroup END
 " Syntax
 function! ShowTrailerTrash()
     if (exists("g:show_trailertrash") && g:show_trailertrash == 1)
-        hi UnwantedTrailerTrash guifg=NONE guibg=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
         au! TrailerTrash ColorScheme *
         let g:show_trailertrash = 0
     else

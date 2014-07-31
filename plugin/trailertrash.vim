@@ -48,7 +48,7 @@ function! s:TrailerMatch(pattern)
                 return
             endif
         endfor
-        if (exists("b:show_trailertrash") && b:show_trailertrash == 0)
+        if (exists("b:disable_trailertrash") && b:disable_trailertrash)
             return
         endif
         exe "match" "UnwantedTrailerTrash" a:pattern

@@ -7,12 +7,12 @@ This plugin will highlight trailing whitespace at the end of the line. This is d
  * You are not currently editing that line (prevents highlighting it as you type)
  * You are not in insert mode
 
- It also introduces a `:Trim` command that will strip all the trailing white space from a file (or range). This is done in a polite way:
+ It also introduces a `:TrailerTrim` command that will strip all the trailing white space from a file (or range). This is done in a polite way:
 
  * Places the cursor back where is started
  * Resets the search highlight back to what it was
 
-TrailerTrash defines a `:Trailer` command to stop showing unwanted whitespace, for those projects where you don't want to start fighting it.
+TrailerTrash defines a `:TrailerToggle` command to stop showing unwanted whitespace, for those projects where you don't want to start fighting it.
 
 As always, Trailer Trash is polite.
 
@@ -30,6 +30,16 @@ You can modify the appearance of TrailerTrash with the `hi UnwantedTrailerTrash`
 For example, you can set the background of all trailing trash to red with the following:
 
     hi UnwantedTrailerTrash guibg=red ctermbg=red
+
+### Disabling TrailerTrash
+
+TrailerTrash uses `2match` ([vimdoc](http://vimdoc.sourceforge.net/htmldoc/pattern.html#match-highlight)) to define a highlight pattern. If you would like to disable it you can call `2match none`. This works great in plugins that provide you a hook to customize buffers, such as Unite's `unite_settings()`
+
+```viml
+function! s:unite_settings()
+  2match none
+endfunction
+```
 
 
 ----

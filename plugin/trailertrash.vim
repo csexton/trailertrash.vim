@@ -45,6 +45,10 @@ function! s:ShouldMatch()
         return 0
     endif
 
+    if(g:show_trailertrash == 0)
+        return 0
+    endif
+
     let bufname = bufname('%')
     for ignore in s:blacklist
         if bufname =~ ignore
@@ -72,12 +76,14 @@ function! s:TrailerHide()
     au! TrailerTrash ColorScheme *
     hi link UnwantedTrailerTrash Normal
     let g:show_trailertrash = 0
+    call s:TrailerMatch('/\s\+$/')
 endfunction
 
 function! s:TrailerShow()
     hi link UnwantedTrailerTrash Error
     au TrailerTrash ColorScheme * hi link UnwantedTrailerTrash Error
     let g:show_trailertrash = 1
+    call s:TrailerMatch('/\s\+$/')
 endfunction
 
 " Syntax

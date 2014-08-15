@@ -33,6 +33,10 @@ For example, you can set the background of all trailing trash to red with the fo
 
 ### Disabling TrailerTrash
 
+In most cases, if you want to hide the highlighting you can simply call `:TrailerHide`, and toggle it back on at any time.
+
+If you want something more extreme, and want stop the underlying mechnism from working all together you can clear the `2match` in vim:
+
 TrailerTrash uses `2match` ([vimdoc](http://vimdoc.sourceforge.net/htmldoc/pattern.html#match-highlight)) to define a highlight pattern. If you would like to disable it you can call `2match none`. This works great in plugins that provide you a hook to customize buffers, such as Unite's `unite_settings()`
 
 ```viml

@@ -25,7 +25,11 @@ function! s:TrailerKill(startline, endline)
     let pos=getpos(".")
     let _s=@/
 
-    exec a:startline . ',' . a:endline. 's/\s\+$//e'
+    if &fileformat =~ 'dos'
+        exec a:startline . ',' . a:endline . 's/\s\+$//e'
+    else
+        exec a:startline . ',' . a:endline . 's/\(\s\|\r\)\+$//e'
+    endif
 
     " Cleanup: restore previous search history, and cursor position
     let @/=_s
@@ -76,14 +80,14 @@ function! s:TrailerHide()
     au! TrailerTrash ColorScheme *
     hi link UnwantedTrailerTrash Normal
     let g:show_trailertrash = 0
-    call s:TrailerMatch('/\s\+$/')
+    call s:TrailerMatch('/\(\s\|\r\)\+$/')
 endfunction
 
 function! s:TrailerShow()
     hi link UnwantedTrailerTrash Error
     au TrailerTrash ColorScheme * hi link UnwantedTrailerTrash Error
     let g:show_trailertrash = 1
-    call s:TrailerMatch('/\s\+$/')
+    call s:TrailerMatch('/\(\s\|\r\)\+$/')
 endfunction
 
 " Syntax
@@ -103,9 +107,9 @@ call s:TrailerToggle()
 "nmap <silent> <Leader>s :call ShowTrailerTrash()<CR>
 
 " Matches
-au BufEnter    * call s:TrailerMatch('/\s\+$/')
-au InsertEnter * call s:TrailerMatch('/\s\+\%#\@<!$/')
-au InsertLeave * call s:TrailerMatch('/\s\+$/')
+au BufEnter    * call s:TrailerMatch('/\(\s\|\r\)\+$/')
+au InsertEnter * call s:TrailerMatch('/\(\s\|\r\)\+\%#\@<!$/')
+au InsertLeave * call s:TrailerMatch('/\(\s\|\r\)\+$/')
 
 " }}}1
 

@@ -16,6 +16,12 @@ TrailerTrash defines a `:TrailerToggle` command to stop showing unwanted whitesp
 
 As always, Trailer Trash is polite.
 
+### Install using vim-plug
+
+```
+Plug 'csexton/trailertrash.vim'
+```
+
 
 ### Ignoring Specific file types
 
